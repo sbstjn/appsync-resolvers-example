@@ -1,0 +1,14 @@
+type Person {
+	id: Int
+	name: String
+	age: Int
+}
+
+type Query {
+	people: [Person]
+	person(id: Int): Person
+}
+
+schema {
+	query: Query
+}

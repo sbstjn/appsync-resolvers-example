@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Resources:
+
+  Lambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/handler_linux
+      Runtime: go1.x
+      Tracing: Active
+
+  Role: 
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: 2012-10-17
+        Statement: 
+          - Effect: Allow
+            Principal:
+              Service: appsync.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies: 
+        - PolicyName: allow-access-to-lambda-from-appsync
+          PolicyDocument: 
+            Version: 2012-10-17
+            Statement: 
+              - Effect: Allow
+                Action: lambda:invokeFunction
+                Resource:
+                  - !GetAtt [ Lambda, Arn ]
+                  - !Join [ '', [ !GetAtt [ Lambda, Arn ], ':*' ] ]
+
+  AppSyncAPI:
+    Type: AWS::AppSync::GraphQLApi
+    Properties:
+      Name: !Join [ -, [ !Ref ParamProjectName, !Ref ParamENV ] ]
+      AuthenticationType: API_KEY
+
+  AppSyncSchema:
+    Type: AWS::AppSync::GraphQLSchema
+    Properties:
+      ApiId: !GetAtt [ AppSyncAPI, ApiId ]
+      Definition: !Ref ParamSchema
+
+  AppSyncDataSource:
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !GetAtt [ AppSyncAPI, ApiId ]
+      Name: handler
+      Type: AWS_LAMBDA
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt [ Lambda, Arn ]
+      ServiceRoleArn: !GetAtt [ Role, Arn ]
+
+  AppSyncResolverFeed:
+    Type: AWS::AppSync::Resolver
+    Properties:
+      ApiId: !GetAtt [ AppSyncAPI, ApiId ]
+      TypeName: Query
+      FieldName: people
+      DataSourceName: !GetAtt [ AppSyncDataSource, Name ]
+      RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "field": "people", "arguments": $utils.toJson($context.arguments) } }'
+      ResponseMappingTemplate: $util.toJson($context.result)
+
+  AppSyncResolverPost:
+    Type: AWS::AppSync::Resolver
+    Properties:
+      ApiId: !GetAtt [ AppSyncAPI, ApiId ]
+      TypeName: Query
+      FieldName: person
+      DataSourceName: !GetAtt [ AppSyncDataSource, Name ]
+      RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "field": "person", "arguments": $utils.toJson($context.arguments) } }'
+      ResponseMappingTemplate: $util.toJson($context.result)
+
+  AppSyncAPIKey:
+      Type: AWS::AppSync::ApiKey
+      Properties:
+        ApiId: !GetAtt [ AppSyncAPI, ApiId ]
+        Expires: !Ref ParamKeyExpiration
+
+Parameters:
+
+  ParamProjectName:
+    Type: String
+  ParamSchema:
+    Type: String
+  ParamENV:
+    Type: String
+  ParamKeyExpiration:
+    Type: Number
+
+Outputs:
+
+  APIKey:
+    Description: API Key
+    Value: !GetAtt [ AppSyncAPIKey, ApiKey ]
+
+  GraphQL:
+    Description: GraphQL URL
+    Value: !GetAtt [ AppSyncAPI, GraphQLUrl ]
