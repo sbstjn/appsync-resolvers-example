@@ -1,10 +1,10 @@
 # AppSync Router Example
 
-> Example project using [appsync-router] to create an AWS AppSync GraphQL API using an AWS Lambda function as a custom data source and resolver written in Go.
+> Example project using [appsync-router] to create an AWS AppSync GraphQL API with an AWS Lambda function as custom data source and GraphQL resolver written in Go. Thanks to [Serverless Application Model] by Amazon, you only need the `aws` CLI application as a dependency.
 
 ## Configuration
 
-The `Makefile` contains all tasks to set up a CloudFormation stack using the [Serverless Application Model] by Amazon. You only need the `aws` CLI application.
+The `Makefile` contains all tasks to set up the CloudFormation stack.
 
 ```bash
 # Create S3 Bucket to store deploy artifacts
@@ -42,7 +42,7 @@ $ > make outputs
 
 ### Send GraphQL Requests
 
-To request a list of all people, use the `people` query:
+#### Request list of all people
 
 ```bash
 $ > curl \
@@ -70,7 +70,7 @@ $ > curl \
 }
 ```
 
-To request a specific person, use the `person` query:
+#### Request specific person
 
 ```bash
 $ > curl \
