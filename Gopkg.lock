@@ -14,12 +14,12 @@
 [[projects]]
   name = "github.com/sbstjn/appsync-router"
   packages = ["."]
-  revision = "dc879059add82e8c71d4642bbd242fbff881d4b3"
-  version = "v0.1.0"
+  revision = "d5422eff909fedcefbc90c4cfc78ac4f4d98298a"
+  version = "v0.1.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "83e14692c726d870f082a1cdee90ad82c9d5ffef26727d7a1a05ed778f872ef6"
+  inputs-digest = "49feb59bbfb411593cf818471572e40e2d553d99227121b33ff97083b480a3f1"
   solver-name = "gps-cdcl"
   solver-version = 1
