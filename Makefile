@@ -55,8 +55,8 @@ deploy:
 
 describe:
 	@ aws cloudformation describe-stacks \
-			--region $(AWS_REGION) \
-			--stack-name $(AWS_STACK_NAME)
+		--region $(AWS_REGION) \
+		--stack-name $(AWS_STACK_NAME)
 
 outputs:
 	@ make describe \
