@@ -30,8 +30,8 @@
   version = "1.2.0"
 
 [[constraint]]
-  name = "github.com/sbstjn/appsync-router"
-  version = "0.1.2"
+  name = "github.com/sbstjn/appsync-resolvers"
+  version = "0.2.0"
 
 [prune]
   go-tests = true

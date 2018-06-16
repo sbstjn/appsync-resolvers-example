@@ -1,6 +1,6 @@
-# AppSync Router Example
+# AppSync Resolvers Example
 
-> Example project using [appsync-router] to create an AWS AppSync GraphQL API with an AWS Lambda function as custom data source and GraphQL resolver written in Go. Thanks to [Serverless Application Model] by Amazon, you only need the `aws` CLI application as a dependency.
+> Example project using [appsync-resolvers] to create an AWS AppSync GraphQL API with an AWS Lambda function as custom data source and GraphQL resolver written in Go. Thanks to [Serverless Application Model] by Amazon, you only need the `aws` CLI application as a dependency.
 
 ## Configuration
 
@@ -100,5 +100,5 @@ You are welcome to contribute to this project! 😘
 
 To make sure you have a pleasant experience, please read the [code of conduct](CODE_OF_CONDUCT.md). It outlines core values and beliefs and will make working together a happier experience.
 
-[appsync-router]: https://github.com/sbstjn/appsync-router
+[appsync-resolvers]: https://github.com/sbstjn/appsync-resolvers
 [Serverless Application Model]: https://github.com/awslabs/serverless-application-model

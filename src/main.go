@@ -2,18 +2,15 @@ package main
 
 import (
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/sbstjn/appsync-router"
+	resolvers "github.com/sbstjn/appsync-resolvers"
 )
-
-// PeopleEvent matches the payload of the people resolver
-type PeopleEvent struct{}
 
 // PersonEvent matches the payload of the person(id: Number) resolver
 type PersonEvent struct {
 	ID int `json:"id"`
 }
 
-func handlePeople(args PeopleEvent) (interface{}, error) {
+func handlePeople() (interface{}, error) {
 	return people, nil
 }
 
@@ -22,7 +19,7 @@ func handlePerson(args PersonEvent) (interface{}, error) {
 }
 
 var (
-	r = router.New()
+	r = resolvers.New()
 )
 
 func init() {

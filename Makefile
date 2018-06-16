@@ -1,4 +1,4 @@
-PROJECT_NAME ?= appsync-router-example
+PROJECT_NAME ?= appsync-resolvers-example
 ENV ?= stable
 
 AWS_BUCKET_NAME ?= $(PROJECT_NAME)-artifacts-$(ENV)
