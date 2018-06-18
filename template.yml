@@ -53,7 +53,7 @@ Resources:
         LambdaFunctionArn: !GetAtt [ Lambda, Arn ]
       ServiceRoleArn: !GetAtt [ Role, Arn ]
 
-  AppSyncResolverFeed:
+  AppSyncResolverPeople:
     Type: AWS::AppSync::Resolver
     Properties:
       ApiId: !GetAtt [ AppSyncAPI, ApiId ]
@@ -63,7 +63,7 @@ Resources:
       RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "field": "people", "arguments": $utils.toJson($context.arguments) } }'
       ResponseMappingTemplate: $util.toJson($context.result)
 
-  AppSyncResolverPost:
+  AppSyncResolverPerson:
     Type: AWS::AppSync::Resolver
     Properties:
       ApiId: !GetAtt [ AppSyncAPI, ApiId ]
