@@ -6,20 +6,20 @@
 
 ```graphql
 type Person {
-	id: Int!
-	name: String!
-	age: Int!
+    id: Int!
+    name: String!
+    age: Int!
 
-	friends: [Person!]!
+    friends: [Person!]!
 }
 
 type Query {
-	people: [Person!]!
-	person(id: Int): Person!
+    people: [Person!]!
+    person(id: Int): Person!
 }
 
 schema {
-	query: Query
+    query: Query
 }
 ```
 
