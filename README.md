@@ -1,17 +1,41 @@
 # AppSync Resolvers Example
 
-> Example project using [appsync-resolvers] to create an AWS AppSync GraphQL API with an AWS Lambda function as custom data source and GraphQL resolver written in Go. Thanks to [Serverless Application Model] by Amazon, you only need the `aws` CLI application as a dependency.
+> Example project using [appsync-resolvers] to create an AWS AppSync GraphQL API with AWS Lambda as custom data source and GraphQL resolver written in Go. Thanks to [Serverless Application Model] by Amazon, you only need the `aws` CLI application as a dependency.
+
+## Schema
+
+```graphql
+type Person {
+	id: Int!
+	name: String!
+	age: Int!
+
+	friends: [Person!]!
+}
+
+type Query {
+	people: [Person!]!
+	person(id: Int): Person!
+}
+
+schema {
+	query: Query
+}
+```
 
 ## Configuration
 
 The `Makefile` contains all tasks to set up the CloudFormation stack.
 
 ```bash
+# Install Go dependencies
+$ > make install
+
 # Create S3 Bucket to store deploy artifacts
 $ > make configure
 
 # Build go binary for AWS Lambda
-$ > make build-lambda
+$ > make build
 
 # Create deployable artifact
 $ > make package
@@ -77,14 +101,19 @@ $ > curl \
     -XPOST https://3mhugdjvrzeclk5ssrc7qzjpxn.appsync-api.eu-west-1.amazonaws.com/graphql \
     -H "Content-Type:application/graphql" \
     -H "x-api-key:da2-jlewwo38ojcrfasc3dpaxqgxcc" \
-    -d '{ "query": "query { person(id: 2) { name } }" }' | jq
+    -d '{ "query": "query { person(id: 2) { name friends { name } } }" }' | jq
 ```
 
 ```json
 {
   "data": {
     "person": {
-      "name": "Paul Gascoigne"
+      "name": "Paul Gascoigne",
+      "friends": [
+        {
+          "name": "Frank Ocean"
+        }
+      ]
     }
   }
 }

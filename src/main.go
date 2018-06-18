@@ -5,17 +5,20 @@ import (
 	resolvers "github.com/sbstjn/appsync-resolvers"
 )
 
-// PersonEvent matches the payload of the person(id: Number) resolver
-type PersonEvent struct {
+type personEvent struct {
 	ID int `json:"id"`
 }
 
 func handlePeople() (interface{}, error) {
-	return people, nil
+	return dataPeople, nil
 }
 
-func handlePerson(args PersonEvent) (interface{}, error) {
-	return people.ByID(args.ID)
+func handlePerson(p personEvent) (interface{}, error) {
+	return dataPeople.byID(p.ID)
+}
+
+func handleFriends(p person) (interface{}, error) {
+	return p.getFriends()
 }
 
 var (
@@ -23,8 +26,9 @@ var (
 )
 
 func init() {
-	r.Add("people", handlePeople)
-	r.Add("person", handlePerson)
+	r.Add("query.people", handlePeople)
+	r.Add("query.person", handlePerson)
+	r.Add("field.person.friends", handleFriends)
 }
 
 func main() {

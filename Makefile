@@ -4,7 +4,7 @@ ENV ?= stable
 AWS_BUCKET_NAME ?= $(PROJECT_NAME)-artifacts-$(ENV)
 AWS_STACK_NAME ?= $(PROJECT_NAME)-stack-$(ENV)
 AWS_REGION ?= eu-west-1
-GOOS ?= darwin
+GOOS ?= linux
 
 FILE_TEMPLATE = template.yml
 FILE_PACKAGE = package.yml
@@ -22,10 +22,10 @@ test:
 	@ go test ./... -v
 
 build:
-	@ go build -o dist/handler_$(GOOS) ./src
+	@ GOOS=$(GOOS) go build -o dist/handler_$(GOOS) ./src
 
-build-lambda: 
-	@ GOOS=linux make build
+build-osx: 
+	@ GOOS=darwin make build
 
 configure:
 	@ aws s3api create-bucket \

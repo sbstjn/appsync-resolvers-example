@@ -53,24 +53,34 @@ Resources:
         LambdaFunctionArn: !GetAtt [ Lambda, Arn ]
       ServiceRoleArn: !GetAtt [ Role, Arn ]
 
-  AppSyncResolverFeed:
+  AppSyncResolverPeople:
     Type: AWS::AppSync::Resolver
     Properties:
       ApiId: !GetAtt [ AppSyncAPI, ApiId ]
       TypeName: Query
       FieldName: people
       DataSourceName: !GetAtt [ AppSyncDataSource, Name ]
-      RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "field": "people", "arguments": $utils.toJson($context.arguments) } }'
+      RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "resolve": "query.people", "context": $utils.toJson($context) } }'
       ResponseMappingTemplate: $util.toJson($context.result)
 
-  AppSyncResolverPost:
+  AppSyncResolverPerson:
     Type: AWS::AppSync::Resolver
     Properties:
       ApiId: !GetAtt [ AppSyncAPI, ApiId ]
       TypeName: Query
       FieldName: person
       DataSourceName: !GetAtt [ AppSyncDataSource, Name ]
-      RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "field": "person", "arguments": $utils.toJson($context.arguments) } }'
+      RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "resolve": "query.person", "context": $utils.toJson($context) } }'
+      ResponseMappingTemplate: $util.toJson($context.result)
+
+  AppSyncResolverFriends:
+    Type: AWS::AppSync::Resolver
+    Properties:
+      ApiId: !GetAtt [ AppSyncAPI, ApiId ]
+      TypeName: Person
+      FieldName: friends
+      DataSourceName: !GetAtt [ AppSyncDataSource, Name ]
+      RequestMappingTemplate: '{ "version" : "2017-02-28", "operation": "Invoke", "payload": { "resolve": "field.person.friends", "context": $utils.toJson($context) } }'
       ResponseMappingTemplate: $util.toJson($context.result)
 
   AppSyncAPIKey:
