@@ -9,15 +9,15 @@ type personEvent struct {
 	ID int `json:"id"`
 }
 
-func handlePeople() (interface{}, error) {
+func handlePeople() (people, error) {
 	return dataPeople, nil
 }
 
-func handlePerson(p personEvent) (interface{}, error) {
+func handlePerson(p personEvent) (*person, error) {
 	return dataPeople.byID(p.ID)
 }
 
-func handleFriends(p person) (interface{}, error) {
+func handleFriends(p person) (people, error) {
 	return p.getFriends()
 }
 
