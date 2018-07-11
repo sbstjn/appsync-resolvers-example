@@ -4,7 +4,6 @@ Example project using the [appsync-resolvers] package to create an AWS AppSync G
 
 ## Schema
 
-\
 ![Image](playground.png)
 
 ```graphql
