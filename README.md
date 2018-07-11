@@ -2,10 +2,9 @@
 
 > Example project using the [appsync-resolvers] package to create an AWS AppSync GraphQL API using AWS Lambda for custom `Query` and `Field` resolvers written in Go. Thanks to [Serverless Application Model] by Amazon, you only need the `aws` CLI application and no other third-party frameworks!&nbsp; 🎉
 
-\
-![Image](playground.png)
-
 ## Schema
+
+![Image](playground.png)
 
 ```graphql
 type Person {
