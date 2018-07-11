@@ -14,12 +14,12 @@
 [[projects]]
   name = "github.com/sbstjn/appsync-resolvers"
   packages = ["."]
-  revision = "e4875a95b129fefa491d51b73027477a2fd9065e"
-  version = "v0.2.1"
+  revision = "e913d2f26c27fa61f73052e2037b064c85a2fcdb"
+  version = "v0.3.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7236b24c7204f19c081a0edd25cedebee2933e72ba54e8176397936ad40e2694"
+  inputs-digest = "2a27af2a9d98e2cd3b09009f64cb682d181eaeed60a758fcc99a3be3df0742ca"
   solver-name = "gps-cdcl"
   solver-version = 1
