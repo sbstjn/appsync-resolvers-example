@@ -9,8 +9,6 @@ See [Serverless GraphQL with AWS AppSync and Lambda](https://sbstjn.com/serverle
 
 ## Schema
 
-![Image](playground.png)
-
 ```graphql
 type Person {
     id: Int!
