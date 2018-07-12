@@ -1,5 +1,8 @@
 # AWS AppSync Resolvers with CloudFormation & SAM
 
+[![MIT License](https://badgen.now.sh/badge/License/MIT/blue)](https://github.com/sbstjn/appsync-resolvers/blob/master/LICENSE.md)
+[![Read Tutorial](https://badgen.now.sh/badge/Read/Tutorial/orange)](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html)
+
 Fully working GraphQL API example project using [appsync-resolvers] for AWS AppSync and *ready to be deployed* with CloudFormation using the [Serverless Application Model]. Includes AWS Lambda functions for custom `Query` and `Field` resolvers written in Go. You only need the `aws` CLI application and no other third-party frameworks!&nbsp; 🎉
 
 See [Serverless GraphQL with AWS AppSync and Lambda](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html) on [sbstjn.com](https://sbstjn.com) for a detailed guide how to set up and configure this project. Or just run `make configure build package deploy` and you are ready to go …
