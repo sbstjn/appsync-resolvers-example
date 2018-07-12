@@ -1,4 +1,4 @@
-# AWS AppSync Resolvers with CloudFormation & SAM
+# AWS AppSync Resolvers w/ CloudFormation, Lambda & SAM
 
 [![MIT License](https://badgen.now.sh/badge/License/MIT/blue)](https://github.com/sbstjn/appsync-resolvers-example/blob/master/LICENSE.md)
 [![Read Tutorial](https://badgen.now.sh/badge/Read/Tutorial/orange)](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html)
