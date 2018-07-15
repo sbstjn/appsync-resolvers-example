@@ -2,6 +2,7 @@
 
 [![MIT License](https://badgen.now.sh/badge/License/MIT/blue)](https://github.com/sbstjn/appsync-resolvers-example/blob/master/LICENSE.md)
 [![Read Tutorial](https://badgen.now.sh/badge/Read/Tutorial/orange)](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html)
+[![Code Library](https://badgen.now.sh/badge/Code/Library/cyan)](https://github.com/sbstjn/appsync-resolvers)
 
 Fully working GraphQL API example project using [appsync-resolvers] for AWS AppSync and *ready to be deployed* with CloudFormation using the [Serverless Application Model]. Includes AWS Lambda functions for custom `Query` and `Field` resolvers written in Go. You only need the `aws` CLI application and no other third-party frameworks!&nbsp; 🎉
 
