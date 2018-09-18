@@ -9,7 +9,6 @@ GOOS ?= linux
 FILE_TEMPLATE = template.yml
 FILE_PACKAGE = package.yml
 
-SCHEMA := $(shell cat schema.graphql)
 EXPIRATION = $(shell echo $$(( $(shell date +%s) + 604800 ))) # 7 days from now (timestamp)
 
 clean:
@@ -49,7 +48,6 @@ deploy:
 		--force-upload \
 		--parameter-overrides \
 			ParamProjectName=$(PROJECT_NAME) \
-			ParamSchema="$(SCHEMA)" \
 			ParamKeyExpiration=$(EXPIRATION) \
 			ParamENV=$(ENV)
 
