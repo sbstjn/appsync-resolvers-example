@@ -41,7 +41,7 @@ Resources:
     Type: AWS::AppSync::GraphQLSchema
     Properties:
       ApiId: !GetAtt [ AppSyncAPI, ApiId ]
-      Definition: !Ref ParamSchema
+      DefinitionS3Location: schema.graphql
 
   AppSyncDataSource:
     Type: AWS::AppSync::DataSource
@@ -92,8 +92,6 @@ Resources:
 Parameters:
 
   ParamProjectName:
-    Type: String
-  ParamSchema:
     Type: String
   ParamENV:
     Type: String
